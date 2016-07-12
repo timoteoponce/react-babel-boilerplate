@@ -1,4 +1,5 @@
 import React from 'react';
+import Toolbar from './Toolbar.jsx';
 import 'whatwg-fetch';
 
 class App extends React.Component{
@@ -22,6 +23,7 @@ class App extends React.Component{
   render(){
     return (
       <div>
+        <Toolbar title="App bar"/>
         <h2>{this.state.name}</h2>  
         <input type="button" value="Say hello!" onClick={this.onSayHello.bind(this)}/>
         <hr/>
@@ -32,11 +34,11 @@ class App extends React.Component{
 
   renderAjaxCall(){
     return(
-      <div>
-        <input type="button" value="Get Posts" onClick={this.onGetPosts.bind(this)}/>
-        <br/>
-        <textarea rows="10" cols="30" value={this.state.remotePosts} />
-      </div>
+        <div>
+          <input type="button" value="Get Posts" onClick={this.onGetPosts.bind(this)}/>
+          <br/>
+          <textarea rows="10" cols="30" value={this.state.remotePosts} />
+        </div>
     );
   }
 
@@ -50,12 +52,12 @@ class App extends React.Component{
   onGetPosts(){
     let self = this;
     fetch('http://jsonplaceholder.typicode.com/posts/1')
-      .then( (response) => response.json() )
-      .then( (json) => {
-        self.setState({
-          remotePosts: json
-        });
+    .then( (response) => response.json() )
+    .then( (json) => {
+      self.setState({
+        remotePosts: json
       });
+    });
   }
 }
 
